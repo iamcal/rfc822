@@ -12,7 +12,7 @@
 
 	##################################################################################
 
-	function is_valid_email_address($email){
+	function is_rfc822_valid_email_address($email){
 
 		$qtext = '[^\\x0d\\x22\\x5c\\x80-\\xff]';
 
@@ -42,43 +42,5 @@
 		return preg_match("!^$addr_spec$!", $email) ? 1 : 0;
 	}
 
-	##################################################################################
-
-	function test($email){
-
-		echo "<tr><td>".HtmlEntities($email)."</td>";
-		echo "<td>".(is_valid_email_address($email)?'Yes':'No')."</td></tr>";
-	}
-
-	##################################################################################
-	
+	##################################################################################	
 ?>
-
-<table border="1">
-	<tr>
-		<th>Input</th>
-		<th>Valid?</th>
-	</tr>
-<?php test('cal@iamcalx.com'); ?>
-<?php test('cal+henderson@iamcalx.com'); ?>
-<?php test('cal henderson@iamcalx.com'); ?>
-<?php test('"cal henderson"@iamcalx.com'); ?>
-<?php test('cal@iamcalx'); ?>
-<?php test('cal@iamcalx com'); ?>
-<?php test('cal@hello world.com'); ?>
-<?php test('cal@[hello world].com'); ?>
-<?php test('cal@[hello\\ world].com'); ?>
-<?php test('abcdefghijklmnopqrstuvwxyz@abcdefghijklmnopqrstuvwxyz'); ?>
-
-<?php test('woo\\ yay@example.com'); ?>
-<?php test('woo\\@yay@example.com'); ?>
-<?php test('woo\\.yay@example.com'); ?>
-
-<?php test('"woo yay"@example.com'); ?>
-<?php test('"woo@yay"@example.com'); ?>
-<?php test('"woo.yay"@example.com'); ?>
-<?php test('"woo\\"yay"@test.com'); ?>
-
-<?php test('webstaff@redcross.org'); ?>
-
-</table>

@@ -1,18 +1,18 @@
 <?php
 
 	#
-	# RFC(2)822 Email Parser
+	# RFC3696 Email Parser
 	#
 	# By Cal Henderson <cal@iamcal.com>
 	# This code is licensed under a Creative Commons Attribution-ShareAlike 2.5 License
 	# http://creativecommons.org/licenses/by-sa/2.5/
 	#
-	# $Revision: 1.3 $
+	# $Revision$
 	#
 
 	##################################################################################
 
-	function is_rfc2822_valid_email_address($email){
+	function is_rfc3696_valid_email_address($email){
 
 
 		####################################################################################

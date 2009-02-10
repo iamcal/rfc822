@@ -7,12 +7,12 @@
 	# This code is licensed under a Creative Commons Attribution-ShareAlike 2.5 License
 	# http://creativecommons.org/licenses/by-sa/2.5/
 	#
-	# $Revision: 1.1 $
+	# $Revision: 1.3 $
 	#
 
 	##################################################################################
 
-	function is_valid_email_address($email){
+	function is_rfc2822_valid_email_address($email){
 
 
 		####################################################################################
@@ -159,6 +159,7 @@
 
 		$local_part	= "($dot_atom|$quoted_string|$obs_local_part)";
 		$domain		= "($dot_atom|$domain_literal|$obs_domain)";
+		$domain		= "$dot_atom";
 		$addr_spec	= "($local_part\\x40$domain)";
 
 
@@ -185,50 +186,4 @@
 	}
 
 	##################################################################################
-
-	function test($email){
-
-		echo "<tr><td>".HtmlEntities($email)."</td>";
-		echo "<td>".(is_valid_email_address($email)?'Yes':'No')."</td></tr>";
-	}
-
-	##################################################################################
-	
 ?>
-
-<table border="1">
-	<tr>
-		<th>Input</th>
-		<th>Valid?</th>
-	</tr>
-<?php test('cal@iamcalx.com'); ?>
-<?php test('cal+henderson@iamcalx.com'); ?>
-<?php test('cal henderson@iamcalx.com'); ?>
-<?php test('"cal henderson"@iamcalx.com'); ?>
-<?php test('cal@iamcalx'); ?>
-<?php test('cal@iamcalx com'); ?>
-<?php test('cal@hello world.com'); ?>
-<?php test('cal@[hello].com'); ?>
-<?php test('cal@[hello world].com'); ?>
-<?php test('cal@[hello\\ world].com'); ?>
-<?php test('cal@[hello.com]'); ?>
-<?php test('cal@[hello world.com]'); ?>
-<?php test('cal@[hello\\ world.com]'); ?>
-<?php test('abcdefghijklmnopqrstuvwxyz@abcdefghijklmnopqrstuvwxyz'); ?>
-
-<?php test('woo\\ yay@example.com'); ?>
-<?php test('woo\\@yay@example.com'); ?>
-<?php test('woo\\.yay@example.com'); ?>
-
-<?php test('"woo yay"@example.com'); ?>
-<?php test('"woo@yay"@example.com'); ?>
-<?php test('"woo.yay"@example.com'); ?>
-<?php test('"woo\\"yay"@test.com'); ?>
-
-<?php test('webstaff@redcross.org'); ?>
-
-<?php test('user@???'); ?>
-
-<?php test('user.@domain.com'); ?>
-
-</table>

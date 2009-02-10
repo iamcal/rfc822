@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tests>
+	<test>
+		<address>first.last@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>1234567890123456789012345678901234567890123456789012345678901234@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>"first last"@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>"first\"last"@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first\@last@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>"first@last"@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first\\last@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>x@x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x234</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>123456789012345678901234567890123456789012345678901234567890@12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.123456789012345678901234567890123456789012345678901234567890123.example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[12.34.56.78]</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:::12.34.56.78]</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333::4444:12.34.56.78]</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333:4444:5555:6666:12.34.56.78]</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:::1111:2222:3333:4444:5555:6666]</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333::4444:5555:6666]</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333:4444:5555:6666::]</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333:4444:5555:6666:7777:8888]</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@x23456789012345678901234567890123456789012345678901234567890123.example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@1xample.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@123.example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>123456789012345678901234567890123456789012345678901234567890@12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.1234.example.com</address>
+		<valid>false</valid>
+		<reason>Entire address is longer than 256 characters</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last</address>
+		<valid>false</valid>
+		<reason>No @</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>@example.com</address>
+		<valid>false</valid>
+		<reason>No local part</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>12345678901234567890123456789012345678901234567890123456789012345@example.com</address>
+		<valid>false</valid>
+		<reason>Local part more than 64 characters</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>.first.last@example.com</address>
+		<valid>false</valid>
+		<reason>Local part starts with a dot</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last.@example.com</address>
+		<valid>false</valid>
+		<reason>Local part ends with a dot</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first..last@example.com</address>
+		<valid>false</valid>
+		<reason>Local part has consecutive dots</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>"first"last"@example.com</address>
+		<valid>false</valid>
+		<reason>Local part contains unescaped excluded characters</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first\\@last@example.com</address>
+		<valid>false</valid>
+		<reason>Local part contains unescaped excluded characters</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@</address>
+		<valid>false</valid>
+		<reason>No domain</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>x@x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456789.x23456</address>
+		<valid>false</valid>
+		<reason>Domain exceeds 255 chars</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[.12.34.56.78]</address>
+		<valid>false</valid>
+		<reason>Only char that can precede IPv4 address is ':'</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[12.34.56.789]</address>
+		<valid>false</valid>
+		<reason>Can't be interpreted as IPv4 so IPv6 tag is missing</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[::12.34.56.78]</address>
+		<valid>false</valid>
+		<reason>IPv6 tag is missing</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv5:::12.34.56.78]</address>
+		<valid>false</valid>
+		<reason>IPv6 tag is wrong</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333::4444:5555:12.34.56.78]</address>
+		<valid>false</valid>
+		<reason>Too many IPv6 groups (4 max)</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333:4444:5555:12.34.56.78]</address>
+		<valid>false</valid>
+		<reason>Not enough IPv6 groups</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333:4444:5555:6666:7777:12.34.56.78]</address>
+		<valid>false</valid>
+		<reason>Too many IPv6 groups (6 max)</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333:4444:5555:6666:7777]</address>
+		<valid>false</valid>
+		<reason>Not enough IPv6 groups</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333:4444:5555:6666:7777:8888:9999]</address>
+		<valid>false</valid>
+		<reason>Too many IPv6 groups (8 max)</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222::3333::4444:5555:6666]</address>
+		<valid>false</valid>
+		<reason>Too many '::' (can be none or one)</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333::4444:5555:6666:7777]</address>
+		<valid>false</valid>
+		<reason>Too many IPv6 groups (6 max)</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:333x::4444:5555]</address>
+		<valid>false</valid>
+		<reason>x is not valid in an IPv6 address</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:33333::4444:5555]</address>
+		<valid>false</valid>
+		<reason>33333 is not a valid group in an IPv6 address</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@example.123</address>
+		<valid>false</valid>
+		<reason>TLD can't be all digits</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@com</address>
+		<valid>false</valid>
+		<reason>Mail host must be second- or lower level</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@-xample.com</address>
+		<valid>false</valid>
+		<reason>Label can't begin with a hyphen</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@exampl-.com</address>
+		<valid>false</valid>
+		<reason>Label can't end with a hyphen</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>first.last@x234567890123456789012345678901234567890123456789012345678901234.example.com</address>
+		<valid>false</valid>
+		<reason>Label can't be longer than 63 octets</reason>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+	</test>
+	<test>
+		<address>Abc\@def@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>Fred\ Bloggs@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>Joe.\\Blow@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>"Abc@def"@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>"Fred Bloggs"@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>user+mailbox@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>customer/department=shipping@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>$A12345@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>!def!xyz%abc@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>_somename@example.com</address>
+		<valid>true</valid>
+		<source>RFC3696 (February 2004)</source>
+		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+	</test>
+	<test>
+		<address>dclo@us.ibm.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>abc\@def@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>abc\\@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>Fred\ Bloggs@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>Joe.\\Blow@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>"Abc@def"@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>"Fred Bloggs"@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>customer/department=shipping@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>$A12345@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>!def!xyz%abc@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>_somename@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>user+mailbox@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>peter.piper@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>Doug\ \"Ace\"\ Lovell@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>"Doug \"Ace\" L."@example.com</address>
+		<valid>true</valid>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>abc@def@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>abc\\@def@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>abc\@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>doug@</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>"qu@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>ote"@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>.dot@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>dot.@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>two..dot@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>"Doug "Ace" L."@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>Doug\ \"Ace\"\ L\.@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>hello world@example.com</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<address>gatsby@f.sc.ot.t.f.i.tzg.era.l.d.</address>
+		<valid>false</valid>
+		<reason>Doug Lovell says this should fail</reason>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>test@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>TEST@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>1234567890@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>test+test@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>test-test@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>t*est@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>+1~1+@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>{_test_}@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>"[[ test ]]"@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>test.test@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>"test.test"@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>test."test"@example.com</address>
+		<reason>Quoted string must be entire local part (RFC2822 Section 3.4.1). I disagree with Dave Child on this one.</reason>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>"test@test"@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>test@123.123.123.x123</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>test@123.123.123.123</address>
+		<reason>Top Level Domain won't be all-numeric (see RFC3696 Section 2). I disagree with Dave Child on this one.</reason>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>test@[123.123.123.123]</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>test@example.example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>test@example.example.example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>test.example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>test.@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>test..test@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>.test@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>test@test@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>test@@example.com</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>-- test --@example.com</address>
+		<reason>No spaces allowed in local part</reason>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>[test]@example.com</address>
+		<reason>Square brackets only allowed within quotes</reason>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>true</valid>
+		<address>"test\test"@example.com</address>
+		<source>Adapted from Dave Child - expectation changed</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>"test"test"@example.com</address>
+		<reason>Quotes cannot be nested</reason>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>()[]\;:,&gt;&lt;@example.com</address>
+		<reason>Disallowed Characters</reason>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<reason>Dave Child says so</reason>
+		<address>test@.</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<reason>Dave Child says so</reason>
+		<address>test@example.</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<reason>Dave Child says so</reason>
+		<address>test@.org</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<address>test@123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012.com</address>
+		<reason>255 characters is maximum length for domain. This is 256.</reason>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<reason>Dave Child says so</reason>
+		<address>test@example</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<reason>Dave Child says so</reason>
+		<address>test@[123.123.123.123</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+	<test>
+		<valid>false</valid>
+		<reason>Dave Child says so</reason>
+		<address>test@123.123.123.123]</address>
+		<source>Dave Child</source>
+		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
+	</test>
+</tests>
