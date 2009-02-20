@@ -121,21 +121,23 @@ h1 {
 	}
 
 	function stop($parser, $element_name){
+		$GLOBALS[last_key] = '?';
 		if ($element_name == 'TEST'){
-			$GLOBALS[tests][] = $GLOBALS[test];
-			$GLOBALS[data] = array();
-			$GLOBALS[last_key] = '?';
+			$GLOBALS[tests][$GLOBALS[test][id]] = $GLOBALS[test];
+			$GLOBALS[test] = array();
 		}
 	}
 
 	function char($parser, $chr){
-		$chr = trim($chr);
-		if (!strlen($chr)) return;
-		$GLOBALS[test][$GLOBALS[last_key]] = $chr;
+		if ($GLOBALS[last_key] == 'tests') return;
+		if ($GLOBALS[last_key] == 'test') return;
+		if ($GLOBALS[last_key] == '?') return;
+		$GLOBALS[test][$GLOBALS[last_key]] .= $chr;
 	}
 
 	xml_set_element_handler($parser, "start", "stop");
 	xml_set_character_data_handler($parser, "char");
+	xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
 
 	$fp = fopen("tests.xml", "r");
 
@@ -143,6 +145,11 @@ h1 {
 		xml_parse($parser, $data, feof($fp)) or die (sprintf("XML Error: %s at line %d", xml_error_string(xml_get_error_code($parser)), xml_get_current_line_number($parser)));
 	}
 	xml_parser_free($parser);
+
+#echo "<pre>";
+#var_export($tests[124]);
+#echo "</pre>";
+#exit;
 
 
 	#
@@ -168,6 +175,10 @@ h1 {
 
 	function is_valid($x){
 		return $x ? 'Valid' : 'Invalid';
+	}
+
+	function show_escapes($s){
+		return str_replace(array("\r","\n"), array("&amp;#13;","&amp;#10;"), $s);
 	}
 
 #echo "<pre>";
@@ -205,14 +216,15 @@ h1 {
 
 <div class="isemail isemail_tooltip">
 	<span>
-		<strong><?=HtmlSpecialChars($test[address])?></strong><br />
+		Test # <?=$test[id]?><br />
+		<strong><?=show_escapes(HtmlSpecialChars($test[address]))?></strong><br />
 		Expected result: <?=is_valid($test[expected])?><br />
-<? if ($test[reason]){ ?>
-		Reason: <?=HtmlSpecialChars($test[reason])?><br />
+<? if ($test[comment]){ ?>
+		Comment: <?=HtmlSpecialChars($test[comment])?><br />
 <? } ?>
 		Source: <?=HtmlSpecialChars($test[source])?>
 	</span>
-	<p class="isemail_address"><a href="<?=HtmlSpecialChars($test[sourcelink])?>" target="_blank"><?=HtmlSpecialChars($test[address])?></a></p>
+	<p class="isemail_address"><a href="<?=HtmlSpecialChars($test[sourcelink])?>" target="_blank"><?=show_escapes(HtmlSpecialChars($test[address]))?></a></p>
 	<p class="isemail_result isemail_expected"><?=is_valid($test[expected])?></p>
 	<p class="isemail_result isemail_<?=$test[result_822] ==$test[expected]?'':'un'?>expected"><?=is_valid($test[result_822] )?></p>
 	<p class="isemail_result isemail_<?=$test[result_2822]==$test[expected]?'':'un'?>expected"><?=is_valid($test[result_2822])?></p>
