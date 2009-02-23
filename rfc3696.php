@@ -49,6 +49,15 @@
 		$obs_char	= "[\\x00-\\x09\\x0b\\x0c\\x0e-\\x7f]";
 		$obs_text	= "(?:$lf*$cr*(?:$obs_char$lf*$cr*)*)";
 		$text		= "(?:[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f]|$obs_text)";
+
+		#
+		# there's an issue with the definition of 'text', since 'obs_text' can
+		# be blank and that allows qp's with no character after the slash. we're
+		# treating that as bad, so this just checks we have at least one
+		# (non-CRLF) character
+		#
+
+		$text		= "(?:$lf*$cr*$obs_char$lf*$cr*)";
 		$obs_qp		= "(?:\\x5c[\\x00-\\x7f])";
 		$quoted_pair	= "(?:\\x5c$text|$obs_qp)";
 
@@ -97,7 +106,7 @@
 		# atom            =       [CFWS] 1*atext [CFWS]
 
 		$atext		= "(?:$alpha|$digit|[\\x21\\x23-\\x27\\x2a\\x2b\\x2d\\x2f\\x3d\\x3f\\x5e\\x5f\\x60\\x7b-\\x7e])";
-		$atom		= "(?:$cfws?(?:$atext|$quoted_pair)+$cfws?)";
+		$atom		= "(?:$cfws?(?:$atext)+$cfws?)";
 
 
 		####################################################################################
@@ -115,6 +124,12 @@
 		$qtext		= "(?:$no_ws_ctl|[\\x21\\x23-\\x5b\\x5d-\\x7e])";
 		$qcontent	= "(?:$qtext|$quoted_pair)";
 		$quoted_string	= "(?:$cfws?\\x22(?:$fws?$qcontent)*$fws?\\x22$cfws?)";
+
+		#
+		# changed the '*' to a '+' to require that quoted strings are not empty
+		#
+
+		$quoted_string	= "(?:$cfws?\\x22(?:$fws?$qcontent)+$fws?\\x22$cfws?)";
 		$word		= "(?:$atom|$quoted_string)";
 
 
@@ -206,6 +221,13 @@
 
 		if (strlen($bits[local]) > 64) return 0;
 		if (strlen($bits[domain]) > 255) return 0;
+
+
+		#
+		# see http://www.dominicsayers.com/isemail/ for details, but this should probably be 254
+		#
+
+		if (strlen($email) > 256) return 0;
 
 
 		#
