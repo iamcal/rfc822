@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tests version="1.0">
+<tests version="1.2">
 	<test>
 		<address>first.last@example.com</address>
 		<valid>true</valid>
@@ -30,7 +30,8 @@
 	</test>
 	<test>
 		<address>first\@last@example.com</address>
-		<valid>true</valid>
+		<valid>false</valid>
+		<comment>Escaping can only happen within a quoted string</comment>
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>5</id>
@@ -43,7 +44,7 @@
 		<id>6</id>
 	</test>
 	<test>
-		<address>first\\last@example.com</address>
+		<address>"first\\last"@example.com</address>
 		<valid>true</valid>
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
@@ -198,8 +199,8 @@
 	</test>
 	<test>
 		<address>"first\last"@example.com</address>
-		<valid>false</valid>
-		<comment>Local part contains unescaped excluded characters</comment>
+		<valid>true</valid>
+		<comment>Any character can be escaped in a quoted string</comment>
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>28</id>
@@ -215,7 +216,7 @@
 	<test>
 		<address>"\"@example.com</address>
 		<valid>false</valid>
-		<comment>Local part contains unescaped excluded characters</comment>
+		<comment>Local part is effectively empty</comment>
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>30</id>
@@ -397,31 +398,31 @@
 		<id>52</id>
 	</test>
 	<test>
-		<address>Abc\@def@example.com</address>
+		<address>"Abc\@def"@example.com</address>
 		<valid>true</valid>
 		<source>RFC3696 (February 2004)</source>
 		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
 		<id>53</id>
 	</test>
 	<test>
-		<address>Fred\ Bloggs@example.com</address>
+		<address>"Fred\ Bloggs"@example.com</address>
 		<valid>true</valid>
-		<source>RFC3696 (February 2004)</source>
-		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+		<source>RFC3696 (as amended by erratum 2005-07-09)</source>
+		<sourcelink>http://www.rfc-editor.org/errata_search.php?rfc=3696&amp;eid=246</sourcelink>
 		<id>54</id>
 	</test>
 	<test>
-		<address>Joe.\\Blow@example.com</address>
+		<address>"Joe.\\Blow"@example.com</address>
 		<valid>true</valid>
-		<source>RFC3696 (February 2004)</source>
-		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+		<source>RFC3696 (as amended by erratum 2005-07-09)</source>
+		<sourcelink>http://www.rfc-editor.org/errata_search.php?rfc=3696&amp;eid=246</sourcelink>
 		<id>55</id>
 	</test>
 	<test>
 		<address>"Abc@def"@example.com</address>
 		<valid>true</valid>
-		<source>RFC3696 (February 2004)</source>
-		<sourcelink>http://tools.ietf.org/html/rfc3696#section-3</sourcelink>
+		<source>RFC3696 (as amended by erratum 2005-07-09)</source>
+		<sourcelink>http://www.rfc-editor.org/errata_search.php?rfc=3696&amp;eid=246</sourcelink>
 		<id>56</id>
 	</test>
 	<test>
@@ -475,14 +476,16 @@
 	</test>
 	<test>
 		<address>abc\@def@example.com</address>
-		<valid>true</valid>
+		<valid>false</valid>
+		<comment>This example from RFC3696 was corrected in an erratum</comment>
 		<source>Doug Lovell (LinuxJournal, June 2007)</source>
 		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
 		<id>64</id>
 	</test>
 	<test>
 		<address>abc\\@example.com</address>
-		<valid>true</valid>
+		<valid>false</valid>
+		<comment>This example from RFC3696 was corrected in an erratum</comment>
 		<source>Doug Lovell (LinuxJournal, June 2007)</source>
 		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
 		<id>65</id>
@@ -496,7 +499,8 @@
 	</test>
 	<test>
 		<address>Doug\ \"Ace\"\ Lovell@example.com</address>
-		<valid>true</valid>
+		<valid>false</valid>
+		<comment>Escaping can only happen in a quoted string</comment>
 		<source>Doug Lovell (LinuxJournal, June 2007)</source>
 		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
 		<id>67</id>
@@ -807,9 +811,10 @@
 		<id>108</id>
 	</test>
 	<test>
-		<valid>false</valid>
+		<valid>true</valid>
 		<address>"test\test"@example.com</address>
-		<source>Backslash still needs escaping even in quoted string</source>
+		<comment>Any character can be escaped in a quoted string</comment>
+		<source>Dave Child</source>
 		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
 		<id>109</id>
 	</test>
@@ -910,16 +915,17 @@
 	</test>
 	<test>
 		<address>"test\blah"@example.com</address>
-		<valid>false</valid>
-		<comment>Phil Haack says so</comment>
+		<valid>true</valid>
+		<comment>Any character can be escaped in a quoted string</comment>
 		<source>Phil Haack</source>
 		<sourcelink>http://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx</sourcelink>
 		<id>122</id>
 	</test>
 	<test>
 		<address>"test\&#13;blah"@example.com</address>
-		<valid>false</valid>
-		<source>Disagree with Phil Haack here - I think this contains an unescaped backslash</source>
+		<valid>true</valid>
+		<comment>Any character can be escaped in a quoted string</comment>
+		<source>Phil Haack</source>
 		<sourcelink>http://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx</sourcelink>
 		<id>123</id>
 	</test>
@@ -1037,9 +1043,158 @@
 	</test>
 	<test>
 		<address>phil.h\@\@ck@haacked.com</address>
-		<valid>true</valid>
+		<valid>false</valid>
+		<comment>Escaping can only happen in a quoted string</comment>
 		<source>Phil Haack</source>
 		<sourcelink>http://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx</sourcelink>
 		<id>139</id>
+	</test>
+	<test>
+		<address>"first"."last"@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>140</id>
+	</test>
+	<test>
+		<address>"first".middle."last"@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>141</id>
+	</test>
+	<test>
+		<address>"first\\"last"@example.com</address>
+		<valid>false</valid>
+		<comment>Contains an unescaped quote</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>142</id>
+	</test>
+	<test>
+		<address>"first".last@example.com</address>
+		<valid>true</valid>
+		<comment>obs-local-part form as described in RFC 2822</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>143</id>
+	</test>
+	<test>
+		<address>first."last"@example.com</address>
+		<valid>true</valid>
+		<comment>obs-local-part form as described in RFC 2822</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>144</id>
+	</test>
+	<test>
+		<address>"first"."middle"."last"@example.com</address>
+		<valid>true</valid>
+		<comment>obs-local-part form as described in RFC 2822</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>145</id>
+	</test>
+	<test>
+		<address>"first.middle"."last"@example.com</address>
+		<valid>true</valid>
+		<comment>obs-local-part form as described in RFC 2822</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>146</id>
+	</test>
+	<test>
+		<address>"first.middle.last"@example.com</address>
+		<valid>true</valid>
+		<comment>obs-local-part form as described in RFC 2822</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>147</id>
+	</test>
+	<test>
+		<address>"first..last"@example.com</address>
+		<valid>true</valid>
+		<comment>obs-local-part form as described in RFC 2822</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>148</id>
+	</test>
+	<test>
+		<address>"first\"last"@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>149</id>
+	</test>
+	<test>
+		<address>"first\\\"last"@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>150</id>
+	</test>
+	<test>
+		<address>first."mid\dle"."last"@example.com</address>
+		<valid>true</valid>
+		<comment>Backslash can escape anything but must escape something</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>151</id>
+	</test>
+	<test>
+		<address>"first\\"last"@example.com</address>
+		<valid>false</valid>
+		<comment>Contains an unescaped quote</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>152</id>
+	</test>
+	<test>
+		<address>first."".last@example.com</address>
+		<valid>false</valid>
+		<comment>Contains a zero-length element</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>153</id>
+	</test>
+	<test>
+		<address>first\last@example.com</address>
+		<valid>false</valid>
+		<comment>Unquoted string must be an atom</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>154</id>
+	</test>
+	<test>
+		<address>Abc\@def@example.com</address>
+		<valid>false</valid>
+		<comment>Was incorrectly given as a valid address in the original RFC3696</comment>
+		<source>RFC3696 erratum 246</source>
+		<sourcelink>http://www.rfc-editor.org/errata_search.php?rfc=3696&amp;eid=246</sourcelink>
+		<id>155</id>
+	</test>
+	<test>
+		<address>Fred\ Bloggs@example.com</address>
+		<valid>false</valid>
+		<comment>Was incorrectly given as a valid address in the original RFC3696</comment>
+		<source>RFC3696 erratum 246</source>
+		<sourcelink>http://www.rfc-editor.org/errata_search.php?rfc=3696&amp;eid=246</sourcelink>
+		<id>156</id>
+	</test>
+	<test>
+		<address>Joe.\\Blow@example.com</address>
+		<valid>false</valid>
+		<comment>Was incorrectly given as a valid address in the original RFC3696</comment>
+		<source>RFC3696 erratum 246</source>
+		<sourcelink>http://www.rfc-editor.org/errata_search.php?rfc=3696&amp;eid=246</sourcelink>
+		<id>157</id>
+	</test>
+	<test>
+		<address>first.last@[IPv6:1111:2222:3333:4444:5555:6666:12.34.567.89]</address>
+		<valid>false</valid>
+		<comment>IPv4 part contains an invalid octet</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>157</id>
 	</test>
 </tests>
