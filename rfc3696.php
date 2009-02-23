@@ -304,8 +304,42 @@
 					return 0;
 				}
 			}			
-		}
+		}else{
 
+			#
+			# the domain is either dot-atom or obs-domain - either way, it's
+			# made up of simple labels and we split on dots
+			#
+
+			$labels = explode('.', $bits[domain]);
+
+
+			#
+			# this is allowed by both dot-atom and obs-domain, but is un-routeable on the
+			# public internet, so we'll fail it (e.g. user@localhost)
+			#
+
+			if (count($labels) == 1) return 0;
+
+
+			#
+			# checks on each label
+			#
+
+			foreach ($labels as $label){
+
+				if (strlen($label) > 63) return 0;
+				if (substr($label, 0, 1) == '-') return 0;
+				if (substr($label, -1) == '-') return 0;
+			}
+
+
+			#
+			# last label can't be all numeric
+			#
+
+			if (preg_match('!^[0-9]+$!', array_pop($labels))) return 0;
+		}
 
 
 		return 1;
