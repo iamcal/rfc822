@@ -7,7 +7,7 @@
 	# This code is licensed under a Creative Commons Attribution-ShareAlike 2.5 License
 	# http://creativecommons.org/licenses/by-sa/2.5/
 	#
-	# $Revision: 1.1 $
+	# $Revision$
 	#
 
 	##################################################################################
