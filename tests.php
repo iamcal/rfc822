@@ -178,7 +178,7 @@ h1 {
 	}
 
 	function show_escapes($s){
-		return str_replace(array("\r","\n"), array("&amp;#13;","&amp;#10;"), $s);
+		return str_replace(array("\r","\n"," "), array("&amp;#13;","&amp;#10;","&nbsp;"), $s);
 	}
 
 #echo "<pre>";
@@ -224,7 +224,7 @@ h1 {
 <? } ?>
 		Source: <?=HtmlSpecialChars($test[source])?>
 	</span>
-	<p class="isemail_address"><a href="<?=HtmlSpecialChars($test[sourcelink])?>" target="_blank"><?=show_escapes(HtmlSpecialChars($test[address]))?></a></p>
+	<p class="isemail_address"><nobr><a href="<?=HtmlSpecialChars($test[sourcelink])?>" target="_blank"><?=show_escapes(HtmlSpecialChars($test[address]))?></a></nobr></p>
 	<p class="isemail_result isemail_expected"><?=is_valid($test[expected])?></p>
 	<p class="isemail_result isemail_<?=$test[result_822] ==$test[expected]?'':'un'?>expected"><?=is_valid($test[result_822] )?></p>
 	<p class="isemail_result isemail_<?=$test[result_2822]==$test[expected]?'':'un'?>expected"><?=is_valid($test[result_2822])?></p>
