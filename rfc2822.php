@@ -159,7 +159,6 @@
 
 		$local_part	= "($dot_atom|$quoted_string|$obs_local_part)";
 		$domain		= "($dot_atom|$domain_literal|$obs_domain)";
-		$domain		= "$dot_atom";
 		$addr_spec	= "($local_part\\x40$domain)";
 
 
