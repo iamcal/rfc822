@@ -77,7 +77,9 @@
 
 		#
 		# note: we translate ccontent only partially to avoid an infinite loop
-		# instead, we'll recursively strip comments before processing the input
+		# instead, we'll recursively strip *nested* comments before processing
+		# the input. that will leave 'plain old comments' to be matched during
+		# the main parse.
 		#
 
 		$wsp		= "[\\x20\\x09]";
@@ -87,7 +89,17 @@
 		$ccontent	= "(?:$ctext|$quoted_pair)";
 		$comment	= "(?:\\x28(?:$fws?$ccontent)*$fws?\\x29)";
 		$cfws		= "(?:(?:$fws?$comment)*(?:$fws?$comment|$fws))";
-		$cfws		= "$fws*";
+
+
+		#
+		# these are the rules for removing *nested* comments. we'll just detect
+		# outer comment and replace it with an empty comment, and recurse until
+		# we stop.
+		#
+
+		$outer_ccontent_dull	= "(?:$fws?$ctext|$quoted_pair)";
+		$outer_ccontent_nest	= "(?:$fws?$comment)";
+		$outer_comment		= "(?:\\x28$outer_ccontent_dull*(?:$outer_ccontent_nest$outer_ccontent_dull*)+$fws?\\x29)";
 
 
 		####################################################################################
@@ -177,19 +189,19 @@
 		$addr_spec	= "$local_part\\x40$domain";
 
 
+
 		#
-		# we need to strip comments first (repeat until we can't find any more)
+		# see http://www.dominicsayers.com/isemail/ for details, but this should probably be 254
 		#
 
-		$done = 0;
+		if (strlen($email) > 256) return 0;
 
-		while(!$done){
-			$new = preg_replace("!$comment!", '', $email);
-			if (strlen($new) == strlen($email)){
-				$done = 1;
-			}
-			$email = $new;
-		}
+
+		#
+		# we need to strip nested comments first - we replace them with a simple comment
+		#
+
+		$email = rfc3696_strip_comments($outer_comment, $email, "(x)");
 
 
 		#
@@ -212,7 +224,15 @@
 			'domain-obs'		=> $m[8],
 		);
 
-#var_export($bits); echo "\n";
+
+		#
+		# we need to now strip comments from $bits[local] and $bits[domain],
+		# since we know they're i the right place and we want them out of the
+		# way for checking IPs, label sizes, etc
+		#
+
+		$bits[local] = rfc3696_strip_comments($comment, $bits[local]);
+		$bits[domain] = rfc3696_strip_comments($comment, $bits[domain]);
 
 
 		#
@@ -221,13 +241,6 @@
 
 		if (strlen($bits[local]) > 64) return 0;
 		if (strlen($bits[domain]) > 255) return 0;
-
-
-		#
-		# see http://www.dominicsayers.com/isemail/ for details, but this should probably be 254
-		#
-
-		if (strlen($email) > 256) return 0;
 
 
 		#
@@ -343,6 +356,19 @@
 
 
 		return 1;
+	}
+
+	##################################################################################
+
+	function rfc3696_strip_comments($comment, $email, $replace=''){
+
+		while (1){
+			$new = preg_replace("!$comment!", $replace, $email);
+			if (strlen($new) == strlen($email)){
+				return $email;
+			}
+			$email = $new;
+		}
 	}
 
 	##################################################################################
