@@ -30,7 +30,7 @@
 		$digit		= "[\\x30-\\x39]";
 		$cr		= "\\x0d";
 		$lf		= "\\x0a";
-		$crlf		= "($cr$lf)";
+		$crlf		= "(?:$cr$lf)";
 
 
 		####################################################################################
@@ -47,10 +47,10 @@
 		# quoted-pair     =       ("\" text) / obs-qp
 
 		$obs_char	= "[\\x00-\\x09\\x0b\\x0c\\x0e-\\x7f]";
-		$obs_text	= "($lf*$cr*($obs_char$lf*$cr*)*)";
-		$text		= "([\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f]|$obs_text)";
-		$obs_qp		= "(\\x5c[\\x00-\\x7f])";
-		$quoted_pair	= "(\\x5c$text|$obs_qp)";
+		$obs_text	= "(?:$lf*$cr*(?:$obs_char$lf*$cr*)*)";
+		$text		= "(?:[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f]|$obs_text)";
+		$obs_qp		= "(?:\\x5c[\\x00-\\x7f])";
+		$quoted_pair	= "(?:\\x5c$text|$obs_qp)";
 
 
 		####################################################################################
@@ -72,11 +72,11 @@
 		#
 
 		$wsp		= "[\\x20\\x09]";
-		$obs_fws	= "($wsp+($crlf$wsp+)*)";
-		$fws		= "((($wsp*$crlf)?$wsp+)|$obs_fws)";
-		$ctext		= "($no_ws_ctl|[\\x21-\\x27\\x2A-\\x5b\\x5d-\\x7e])";
-		$ccontent	= "($ctext|$quoted_pair)";
-		$comment	= "(\\x28($fws?$ccontent)*$fws?\\x29)";
+		$obs_fws	= "(?:$wsp+(?:$crlf$wsp+)*)";
+		$fws		= "(?:(?:(?:$wsp*$crlf)?$wsp+)|$obs_fws)";
+		$ctext		= "(?:$no_ws_ctl|[\\x21-\\x27\\x2A-\\x5b\\x5d-\\x7e])";
+		$ccontent	= "(?:$ctext|$quoted_pair)";
+		$comment	= "(?:\\x28(?:$fws?$ccontent)*$fws?\\x29)";
 		$cfws		= "(($fws?$comment)*($fws?$comment|$fws))";
 		$cfws		= "$fws*";
 
