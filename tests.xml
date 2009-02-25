@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tests version="1.2">
+<tests version="1.4">
 	<test>
 		<address>first.last@example.com</address>
 		<valid>true</valid>
@@ -216,7 +216,7 @@
 	<test>
 		<address>"\"@example.com</address>
 		<valid>false</valid>
-		<comment>Local part is effectively empty</comment>
+		<comment>Local part cannot end with a backslash</comment>
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>30</id>
@@ -924,15 +924,15 @@
 	<test>
 		<address>"test\&#13;blah"@example.com</address>
 		<valid>true</valid>
-		<comment>Any character can be escaped in a quoted string</comment>
+		<comment>Quoted string specifically excludes carriage returns unless escaped</comment>
 		<source>Phil Haack</source>
 		<sourcelink>http://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx</sourcelink>
 		<id>123</id>
 	</test>
 	<test>
 		<address>"test&#13;blah"@example.com</address>
-		<valid>true</valid>
-		<comment>Disagree with Phil Haack here - I think this is a valid quoted string with folding white space</comment>
+		<valid>False</valid>
+		<comment>Quoted string specifically excludes carriage returns</comment>
 		<source>Phil Haack</source>
 		<sourcelink>http://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx</sourcelink>
 		<id>124</id>
@@ -1195,6 +1195,126 @@
 		<comment>IPv4 part contains an invalid octet</comment>
 		<source>Cal Henderson</source>
 		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
-		<id>157</id>
+		<id>158</id>
+	</test>
+	<test>
+		<address>"test\&#13;&#10; blah"@example.com</address>
+		<valid>false</valid>
+		<comment>Folding white space can't appear within a quoted pair</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>159</id>
+	</test>
+	<test>
+		<address>"test&#13;&#10; blah"@example.com</address>
+		<valid>true</valid>
+		<comment>This is a valid quoted string with folding white space</comment>
+		<source>Phil Haack</source>
+		<sourcelink>http://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx</sourcelink>
+		<id>160</id>
+	</test>
+	<test>
+		<address>{^c\@**Dog^}@cartoon.com</address>
+		<valid>false</valid>
+		<comment>This is a throwaway example from Doug Lovell's article. Actually it's not a valid address.</comment>
+		<source>Doug Lovell (LinuxJournal, June 2007)</source>
+		<sourcelink>http://www.linuxjournal.com/article/9585</sourcelink>
+		<id>161</id>
+	</test>
+	<test>
+		<address>(foo)cal(bar)@(baz)iamcal.com(quux)</address>
+		<valid>true</valid>
+		<comment>A valid address containing comments</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>162</id>
+	</test>
+	<test>
+		<address>cal@iamcal(woo).(yay)com</address>
+		<valid>true</valid>
+		<comment>A valid address containing comments</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>163</id>
+	</test>
+	<test>
+		<address>"foo"(yay)@(hoopla)[1.2.3.4]</address>
+		<valid>true</valid>
+		<comment>A valid address containing comments</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>164</id>
+	</test>
+	<test>
+		<address>cal(woo(yay)hoopla)@iamcal.com</address>
+		<valid>true</valid>
+		<comment>A valid address containing comments</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>165</id>
+	</test>
+	<test>
+		<address>cal(foo\@bar)@iamcal.com</address>
+		<valid>true</valid>
+		<comment>A valid address containing comments</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>166</id>
+	</test>
+	<test>
+		<address>cal(foo\)bar)@iamcal.com</address>
+		<valid>true</valid>
+		<comment>A valid address containing comments and an escaped parenthesis</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>167</id>
+	</test>
+	<test>
+		<address>cal(foo(bar)@iamcal.com</address>
+		<valid>false</valid>
+		<comment>Unclosed parenthesis in comment</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>168</id>
+	</test>
+	<test>
+		<address>cal(foo)bar)@iamcal.com</address>
+		<valid>false</valid>
+		<comment>Too many closing parentheses</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>169</id>
+	</test>
+	<test>
+		<address>cal(foo\)@iamcal.com</address>
+		<valid>false</valid>
+		<comment>Backslash at end of comment has nothing to escape</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>170</id>
+	</test>
+	<test>
+		<address>first()last@example.com</address>
+		<valid>true</valid>
+		<comment>A valid address containing an empty comment</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>171</id>
+	</test>
+	<test>
+		<address>first(&#13;&#10; middle&#13;&#10; )last@example.com</address>
+		<valid>true</valid>
+		<comment>A valid address containing a comment incorporating Folding White Space</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>172</id>
+	</test>
+	<test>
+		<address>first(12345678901234567890123456789012345678901234567890)last@(1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890)example.com</address>
+		<valid>false</valid>
+		<comment>Too long with comments, not too long without</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>173</id>
 	</test>
 </tests>
