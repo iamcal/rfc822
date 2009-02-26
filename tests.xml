@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tests version="1.4">
+<tests version="1.5">
 	<test>
 		<address>first.last@example.com</address>
 		<valid>true</valid>
@@ -931,7 +931,7 @@
 	</test>
 	<test>
 		<address>"test&#13;blah"@example.com</address>
-		<valid>False</valid>
+		<valid>false</valid>
 		<comment>Quoted string specifically excludes carriage returns</comment>
 		<source>Phil Haack</source>
 		<sourcelink>http://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx</sourcelink>
@@ -1294,7 +1294,7 @@
 		<id>170</id>
 	</test>
 	<test>
-		<address>first()last@example.com</address>
+		<address>first().last@example.com</address>
 		<valid>true</valid>
 		<comment>A valid address containing an empty comment</comment>
 		<source>Dominic Sayers</source>
@@ -1302,9 +1302,9 @@
 		<id>171</id>
 	</test>
 	<test>
-		<address>first(&#13;&#10; middle&#13;&#10; )last@example.com</address>
+		<address>first.(&#13;&#10; middle&#13;&#10; )last@example.com</address>
 		<valid>true</valid>
-		<comment>A valid address containing a comment incorporating Folding White Space</comment>
+		<comment>Comment with folding white space</comment>
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>172</id>
@@ -1316,5 +1316,116 @@
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>173</id>
+	</test>
+	<test>
+		<address>first(Welcome to&#13;&#10; the ("wonderful" (!)) world&#13;&#10; of email)@example.com</address>
+		<valid>true</valid>
+		<comment>Silly example from my blog post</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>174</id>
+	</test>
+	<test>
+		<address>pete(his account)@silly.test(his host)</address>
+		<valid>true</valid>
+		<comment>Canonical example from RFC5322</comment>
+		<source>RFC 5322</source>
+		<sourcelink>http://tools.ietf.org/html/rfc5322</sourcelink>
+		<id>175</id>
+	</test>
+	<test>
+		<address>c@(Chris's host.)public.example</address>
+		<valid>true</valid>
+		<comment>Canonical example from RFC5322</comment>
+		<source>RFC 5322</source>
+		<sourcelink>http://tools.ietf.org/html/rfc5322</sourcelink>
+		<id>176</id>
+	</test>
+	<test>
+		<address>jdoe@machine(comment).  example</address>
+		<valid>true</valid>
+		<comment>Canonical example from RFC5322</comment>
+		<source>RFC 5322</source>
+		<sourcelink>http://tools.ietf.org/html/rfc5322</sourcelink>
+		<id>177</id>
+	</test>
+	<test>
+		<address>1234   @   local(blah)  .machine .example</address>
+		<valid>true</valid>
+		<comment>Canonical example from RFC5322</comment>
+		<source>RFC 5322</source>
+		<sourcelink>http://tools.ietf.org/html/rfc5322</sourcelink>
+		<id>178</id>
+	</test>
+	<test>
+		<address>first(middle)last@example.com</address>
+		<valid>false</valid>
+		<comment>Can't have a comment or white space except at an element boundary</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>179</id>
+	</test>
+	<test>
+		<address>first(abc.def).last@example.com</address>
+		<valid>true</valid>
+		<comment>Comment can contain a dot</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>180</id>
+	</test>
+	<test>
+		<address>first(a"bc.def).last@example.com</address>
+		<valid>true</valid>
+		<comment>Comment can contain double quote</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>181</id>
+	</test>
+	<test>
+		<address>first.(")middle.last(")@example.com</address>
+		<valid>true</valid>
+		<comment>Comment can contain a quote</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>182</id>
+	</test>
+	<test>
+		<address>first(abc("def".ghi).mno)middle(abc("def".ghi).mno).last@(abc("def".ghi).mno)example(abc("def".ghi).mno).(abc("def".ghi).mno)com(abc("def".ghi).mno)</address>
+		<valid>false</valid>
+		<comment>Can't have comments or white space except at an element boundary</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>183</id>
+	</test>
+	<test>
+		<address>first(abc\(def)@example.com</address>
+		<valid>true</valid>
+		<comment>Comment can contain quoted-pair</comment>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>184</id>
+	</test>
+	<test>
+		<address>first.last@x(1234567890123456789012345678901234567890123456789012345678901234567890).com</address>
+		<valid>true</valid>
+		<comment>Label is longer than 63 octets, but not with comment removed</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>185</id>
+	</test>
+	<test>
+		<address>a(a(b(c)d(e(f))g)h(i)j)@example.com</address>
+		<valid>true</valid>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>186</id>
+	</test>
+	<test>
+		<address>a(a(b(c)d(e(f))g)(h(i)j)@example.com</address>
+		<valid>false</valid>
+		<comment>Braces are not properly matched</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
+		<id>187</id>
 	</test>
 </tests>
