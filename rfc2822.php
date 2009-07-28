@@ -4,8 +4,10 @@
 	# RFC(2)822 Email Parser
 	#
 	# By Cal Henderson <cal@iamcal.com>
-	# This code is licensed under a Creative Commons Attribution-ShareAlike 2.5 License
-	# http://creativecommons.org/licenses/by-sa/2.5/
+	#
+	# This code is dual licensed:
+	# CC Attribution-ShareAlike 2.5 - http://creativecommons.org/licenses/by-sa/2.5/
+	# GPLv3 - http://www.gnu.org/copyleft/gpl.html
 	#
 	# $Revision$
 	#
