@@ -1,8 +1,7 @@
-<html>
-<head>
-<title>RFC (2)822 &amp; 3696 Email Address Parser in PHP</title>
-</head>
-<body>
+<?
+	$title = "RFC (2)822 &amp; 3696 Email Address Parser in PHP";
+	include('../../head.txt');
+?>
 
 <h1>RFC (2)822 &amp; 3696 Email Address Parser in PHP</h1>
 
@@ -74,6 +73,6 @@
 <p>A full rolled-up version of the RFC 2882 regexp can be seen <a href="full_regexp.txt">here</a>. </p>
 
 
-
-</body>
-</html>
+<?
+	include('../../foot.txt');
+?>
