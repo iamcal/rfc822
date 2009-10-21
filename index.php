@@ -37,14 +37,30 @@
 	<dt><a href="http://www.faqs.org/rfcs/rfc822.html">RFC 822 - Standard for the Format of ARPA Internet Text Messages</a></dt>
 	<dd>The original 'email' RFC</dd>
 
+	<dt><a href="http://www.faqs.org/rfcs/rfc1035.html">RFC 1035 - Domain names - implementation and specification</a></dt>
+	<dd>The old domains RFC</dd>
+
+	<dt><a href="http://www.faqs.org/rfcs/rfc1123.html">RFC 1123 - Requirements for Internet Hosts - Application and Support</a></dt>
+	<dd>An update to RFC 1035</dd>
+
 	<dt><a href="http://www.faqs.org/rfcs/rfc2821.html">RFC 2821 - Simple Mail Transfer Protocol</a></dt>
-	<dd>SMTP contains some address limits not in RFC2822</dd>
+	<dd>SMTP contains some address limits not in RFC 2822</dd>
 
 	<dt><a href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822 - Internet Message Format</a></dt>
-	<dd>Superceeds RFC822</dd>
+	<dd>Superceeds RFC 822</dd>
 
 	<dt><a href="http://www.faqs.org/rfcs/rfc3696.html">RFC 3696 - Application Techniques for Checking and Transformation of Names</a></dt>
 	<dd>An informative RFC that clarifies some rules (and muddies others)</dd>
+
+	<dt><a href="http://www.faqs.org/rfcs/rfc4291.html">RFC 4291 - IP Version 6 Addressing Architecture</a></dt>
+	<dd>Some useful details about the horrors of IPv6</dd>
+
+	<dt><a href="http://www.faqs.org/rfcs/rfc5321.html">RFC 5321 - Simple Mail Transfer Protocol</a></dt>
+	<dd>Superceeds RFC 2821 (this is the latest SMTP RFC)</dd>
+
+	<dt><a href="http://www.faqs.org/rfcs/rfc5322.html">RFC 5322 - Internet Message Format</a></dt>
+	<dd>Superceeds RFC 2822 (this is the latest email RFC)</dd>
+
 </dl>
 
 
