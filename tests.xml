@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tests version="1.5">
+<tests version="1.8">
 	<test>
 		<address>first.last@example.com</address>
 		<valid>true</valid>
@@ -15,10 +15,10 @@
 		<id>2</id>
 	</test>
 	<test>
-		<address>"first last"@example.com</address>
-		<valid>true</valid>
-		<source>Dominic Sayers</source>
-		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<address>first.last@sub.do,com</address>
+		<valid>false</valid>
+		<comment>Mistyped comma instead of dot (replaces old #3 which was the same as #57)</comment>
+		<source>Rob &lt;bob@bob.com&gt;</source>
 		<id>3</id>
 	</test>
 	<test>
@@ -1120,10 +1120,11 @@
 		<id>148</id>
 	</test>
 	<test>
-		<address>"first\"last"@example.com</address>
-		<valid>true</valid>
-		<source>Dominic Sayers</source>
-		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<address>foo@[\1.2.3.4]</address>
+		<valid>false</valid>
+		<comment>RFC 5321 specifies the syntax for address-literal and does not allow escaping</comment>
+		<source>Cal Henderson</source>
+		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
 		<id>149</id>
 	</test>
 	<test>
@@ -1142,9 +1143,8 @@
 		<id>151</id>
 	</test>
 	<test>
-		<address>"first\\"last"@example.com</address>
-		<valid>false</valid>
-		<comment>Contains an unescaped quote</comment>
+		<address>Test.&#13;&#10; Folding.&#13;&#10; Whitespace@example.com</address>
+		<valid>true</valid>
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>152</id>
@@ -1239,8 +1239,8 @@
 	</test>
 	<test>
 		<address>"foo"(yay)@(hoopla)[1.2.3.4]</address>
-		<valid>true</valid>
-		<comment>A valid address containing comments</comment>
+		<valid>false</valid>
+		<comment>Address literal can't be commented (RFC5321)</comment>
 		<source>Cal Henderson</source>
 		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
 		<id>164</id>
@@ -1427,5 +1427,305 @@
 		<source>Cal Henderson</source>
 		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
 		<id>187</id>
+	</test>
+	<test>
+		<address>name.lastname@domain.com</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>188</id>
+	</test>
+	<test>
+		<address>.@</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>189</id>
+	</test>
+	<test>
+		<address>a@b</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>190</id>
+	</test>
+	<test>
+		<address>@bar.com</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>191</id>
+	</test>
+	<test>
+		<address>@@bar.com</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>192</id>
+	</test>
+	<test>
+		<address>a@bar.com</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>193</id>
+	</test>
+	<test>
+		<address>aaa.com</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>194</id>
+	</test>
+	<test>
+		<address>aaa@.com</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>195</id>
+	</test>
+	<test>
+		<address>aaa@.123</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>196</id>
+	</test>
+	<test>
+		<address>aaa@[123.123.123.123]</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>197</id>
+	</test>
+	<test>
+		<address>aaa@[123.123.123.123]a</address>
+		<valid>false</valid>
+		<comment>extra data outside ip</comment>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>198</id>
+	</test>
+	<test>
+		<address>aaa@[123.123.123.333]</address>
+		<valid>false</valid>
+		<comment>not a valid IP</comment>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>199</id>
+	</test>
+	<test>
+		<address>a@bar.com.</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>200</id>
+	</test>
+	<test>
+		<address>a@bar</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>201</id>
+	</test>
+	<test>
+		<address>a-b@bar.com</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>202</id>
+	</test>
+	<test>
+		<address>+@b.c</address>
+		<valid>true</valid>
+		<comment>TLDs can be any length</comment>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>203</id>
+	</test>
+	<test>
+		<address>+@b.com</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>204</id>
+	</test>
+	<test>
+		<address>a@-b.com</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>205</id>
+	</test>
+	<test>
+		<address>a@b-.com</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>206</id>
+	</test>
+	<test>
+		<address>-@..com</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>207</id>
+	</test>
+	<test>
+		<address>-@a..com</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>208</id>
+	</test>
+	<test>
+		<address>a@b.co-foo.uk</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>209</id>
+	</test>
+	<test>
+		<address>"hello my name is"@stutter.com</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>210</id>
+	</test>
+	<test>
+		<address>"Test \"Fail\" Ing"@example.com</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>211</id>
+	</test>
+	<test>
+		<address>valid@special.museum</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>212</id>
+	</test>
+	<test>
+		<address>invalid@special.museum-</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>213</id>
+	</test>
+	<test>
+		<address>shaitan@my-domain.thisisminekthx</address>
+		<valid>true</valid>
+		<comment>Disagree with Paul Gregg here</comment>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>214</id>
+	</test>
+	<test>
+		<address>test@...........com</address>
+		<valid>false</valid>
+		<comment>......</comment>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>215</id>
+	</test>
+	<test>
+		<address>foobar@192.168.0.1</address>
+		<valid>false</valid>
+		<comment>ip need to be []</comment>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>216</id>
+	</test>
+	<test>
+		<address>"Joe\\Blow"@example.com</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>217</id>
+	</test>
+	<test>
+		<address>Invalid \&#10; Folding \&#10; Whitespace@example.com</address>
+		<valid>false</valid>
+		<source>Paul Gregg</source>
+		<comment>This isn't FWS so Dominic Sayers says it's invalid</comment>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>218</id>
+	</test>
+	<test>
+		<address>HM2Kinsists@(that comments are allowed)this.is.ok</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>219</id>
+	</test>
+	<test>
+		<address>user%uucp!path@somehost.edu</address>
+		<valid>true</valid>
+		<source>Paul Gregg</source>
+		<sourcelink>http://pgregg.com/projects/php/code/showvalidemail.php</sourcelink>
+		<id>220</id>
+	</test>
+	<test>
+		<address>"first(last)"@example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>221</id>
+	</test>
+	<test>
+		<address> &#13;&#10; (&#13;&#10; x &#13;&#10; ) &#13;&#10; first&#13;&#10; ( &#13;&#10; x&#13;&#10; ) &#13;&#10; .&#13;&#10; ( &#13;&#10; x) &#13;&#10; last &#13;&#10; (  x &#13;&#10; ) &#13;&#10; @example.com</address>
+		<valid>true</valid>
+		<source>Dominic Sayers</source>
+		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
+		<id>222</id>
+	</test>
+	<test>
+		<address>test. &#13;&#10; &#13;&#10; obs@syntax.com</address>
+		<valid>true</valid>
+		<comment>obs-fws allows multiple lines</comment>
+		<source>George Pollard</source>
+		<sourcelink>http://porg.es/blog/properly-validating-e-mail-addresses</sourcelink>
+		<id>223</id>
+	</test>
+	<test>
+		<address>test. &#13;&#10; &#13;&#10; obs@syntax.com</address>
+		<valid>true</valid>
+		<comment>obs-fws allows multiple lines (test 2: space before break)</comment>
+		<source>George Pollard</source>
+		<sourcelink>http://porg.es/blog/properly-validating-e-mail-addresses</sourcelink>
+		<id>224</id>
+	</test>
+	<test>
+		<address>test.&#13;&#10;&#13;&#10; obs@syntax.com</address>
+		<valid>false</valid>
+		<comment>obs-fws must have at least one WSP per line</comment>
+		<source>George Pollard</source>
+		<sourcelink>http://porg.es/blog/properly-validating-e-mail-addresses</sourcelink>
+		<id>225</id>
+	</test>
+	<test>
+		<address>"null \\0"@char.com</address>
+		<valid>true</valid>
+		<comment>can have escaped null character</comment>
+		<source>George Pollard</source>
+		<sourcelink>http://porg.es/blog/properly-validating-e-mail-addresses</sourcelink>
+		<id>226</id>
+	</test>
+	<test>
+		<address>"null \0"@char.com</address>
+		<valid>false</valid>
+		<comment>cannot have unescaped null character</comment>
+		<source>George Pollard</source>
+		<sourcelink>http://porg.es/blog/properly-validating-e-mail-addresses</sourcelink>
+		<id>227</id>
+	</test>
+	<test>
+		<address>null\\0@char.com</address>
+		<valid>false</valid>
+		<comment>escaped null must be in quoted string</comment>
+		<source>George Pollard</source>
+		<sourcelink>http://porg.es/blog/properly-validating-e-mail-addresses</sourcelink>
+		<id>228</id>
 	</test>
 </tests>

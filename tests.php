@@ -129,6 +129,7 @@ h1 {
 	}
 
 	function char($parser, $chr){
+		$chr = str_replace('\\0', "\0", $chr);
 		if ($GLOBALS[last_key] == 'tests') return;
 		if ($GLOBALS[last_key] == 'test') return;
 		if ($GLOBALS[last_key] == '?') return;
@@ -178,7 +179,7 @@ h1 {
 	}
 
 	function show_escapes($s){
-		return str_replace(array("\r","\n"," "), array("&amp;#13;","&amp;#10;","&nbsp;"), $s);
+		return str_replace(array("\r","\n"," ","\0"), array("&amp;#13;","&amp;#10;","&nbsp;","&amp;#0;"), $s);
 	}
 
 #echo "<pre>";
