@@ -34,34 +34,39 @@
 <p>Email address formats are covered by several RFCs:</p>
 
 <dl>
-	<dt><a href="http://www.faqs.org/rfcs/rfc822.html">RFC 822 - Standard for the Format of ARPA Internet Text Messages</a></dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc821.html">RFC 821 - Simple Mail Transfer Protocol</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=821">Errata</a>)</dt>
+	<dd>The original SMTP RFC</dd>
+
+	<dt><a href="http://www.faqs.org/rfcs/rfc822.html">RFC 822 - Standard for the Format of ARPA Internet Text Messages</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=822">Errata</a>)</dt>
 	<dd>The original 'email' RFC</dd>
 
-	<dt><a href="http://www.faqs.org/rfcs/rfc1035.html">RFC 1035 - Domain names - implementation and specification</a></dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc1035.html">RFC 1035 - Domain names - implementation and specification</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=1035">Errata</a>)</dt>
 	<dd>The old domains RFC</dd>
 
-	<dt><a href="http://www.faqs.org/rfcs/rfc1123.html">RFC 1123 - Requirements for Internet Hosts - Application and Support</a></dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc1123.html">RFC 1123 - Requirements for Internet Hosts - Application and Support</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=1123">Errata</a>)</dt>
 	<dd>An update to RFC 1035</dd>
 
-	<dt><a href="http://www.faqs.org/rfcs/rfc2821.html">RFC 2821 - Simple Mail Transfer Protocol</a></dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc2821.html">RFC 2821 - Simple Mail Transfer Protocol</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=2821">Errata</a>)</dt>
 	<dd>SMTP contains some address limits not in RFC 2822</dd>
 
-	<dt><a href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822 - Internet Message Format</a></dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822 - Internet Message Format</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=2822">Errata</a>)</dt>
 	<dd>Superceeds RFC 822</dd>
 
-	<dt><a href="http://www.faqs.org/rfcs/rfc3696.html">RFC 3696 - Application Techniques for Checking and Transformation of Names</a></dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc3696.html">RFC 3696 - Application Techniques for Checking and Transformation of Names</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=3696">Errata</a>)</dt>
 	<dd>An informative RFC that clarifies some rules (and muddies others)</dd>
 
-	<dt><a href="http://www.faqs.org/rfcs/rfc4291.html">RFC 4291 - IP Version 6 Addressing Architecture</a></dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc4291.html">RFC 4291 - IP Version 6 Addressing Architecture</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=4291">Errata</a>)</dt>
 	<dd>Some useful details about the horrors of IPv6</dd>
 
-	<dt><a href="http://www.faqs.org/rfcs/rfc5321.html">RFC 5321 - Simple Mail Transfer Protocol</a></dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc5321.html">RFC 5321 - Simple Mail Transfer Protocol</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=5321">Errata</a>)</dt>
 	<dd>Superceeds RFC 2821 (this is the latest SMTP RFC)</dd>
 
-	<dt><a href="http://www.faqs.org/rfcs/rfc5322.html">RFC 5322 - Internet Message Format</a></dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc5322.html">RFC 5322 - Internet Message Format</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=5322">Errata</a>)</dt>
 	<dd>Superceeds RFC 2822 (this is the latest email RFC)</dd>
 
 </dl>
+
+<p>Reading the errata is pretty important, since some of the examples and even the EBNF are wrong in the original RFCs.</p>
 
 
 <h2>Copyright</h2>
