@@ -70,6 +70,7 @@ h1 {
 	width:60px;
 	margin:0 3px 0 3px;
 	padding:3px;
+	text-align: center;
 }
 
 .isemail_expected			{background-color:white;}
@@ -222,7 +223,14 @@ h1 {
 	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['822']  / $totals['all'])?>%</p>
 	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['2822'] / $totals['all'])?>%</p>
 	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['3696'] / $totals['all'])?>%</p>
+</div>
 
+<div class="isemail isemail_tooltip">
+	<p class="isemail_address">Number correct</p>
+	<p class="isemail_result isemail_expected">-</p>
+	<p class="isemail_result isemail_expected"><?=$totals['822']?> / <?=$totals['all']?></p>
+	<p class="isemail_result isemail_expected"><?=$totals['2822']?> / <?=$totals['all']?></p>
+	<p class="isemail_result isemail_expected"><?=$totals['3696']?> / <?=$totals['all']?></p>
 </div>
 
 
