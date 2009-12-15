@@ -216,14 +216,14 @@
 		}
 
 		$bits = array(
-			'local'			=> $m[1],
-			'local-atom'		=> $m[2],
-			'local-quoted'		=> $m[3],
-			'local-obs'		=> $m[4],
-			'domain'		=> $m[5],
-			'domain-atom'		=> $m[6],
-			'domain-literal'	=> $m[7],
-			'domain-obs'		=> $m[8],
+			'local'			=> isset($m[1]) ? $m[1] : '',
+			'local-atom'		=> isset($m[2]) ? $m[2] : '',
+			'local-quoted'		=> isset($m[3]) ? $m[3] : '',
+			'local-obs'		=> isset($m[4]) ? $m[4] : '',
+			'domain'		=> isset($m[5]) ? $m[5] : '',
+			'domain-atom'		=> isset($m[6]) ? $m[6] : '',
+			'domain-literal'	=> isset($m[7]) ? $m[7] : '',
+			'domain-obs'		=> isset($m[8]) ? $m[8] : '',
 		);
 
 
@@ -233,16 +233,16 @@
 		# way for checking IPs, label sizes, etc
 		#
 
-		$bits[local] = rfc3696_strip_comments($comment, $bits[local]);
-		$bits[domain] = rfc3696_strip_comments($comment, $bits[domain]);
+		$bits['local']	= rfc3696_strip_comments($comment, $bits['local']);
+		$bits['domain']	= rfc3696_strip_comments($comment, $bits['domain']);
 
 
 		#
 		# length limits on segments
 		#
 
-		if (strlen($bits[local]) > 64) return 0;
-		if (strlen($bits[domain]) > 255) return 0;
+		if (strlen($bits['local']) > 64) return 0;
+		if (strlen($bits['domain']) > 255) return 0;
 
 
 		#
@@ -271,7 +271,7 @@
 			# IPv4 is simple
 			#
 
-			if (preg_match("!^\[$IPv4_address_literal\]$!", $bits[domain], $m)){
+			if (preg_match("!^\[$IPv4_address_literal\]$!", $bits['domain'], $m)){
 
 				if (intval($m[1]) > 255) return 0;
 				if (intval($m[2]) > 255) return 0;
@@ -286,11 +286,11 @@
 
 				while (1){
 
-					if (preg_match("!^\[$IPv6_full\]$!", $bits[domain])){
+					if (preg_match("!^\[$IPv6_full\]$!", $bits['domain'])){
 						break;
 					}
 
-					if (preg_match("!^\[$IPv6_comp\]$!", $bits[domain], $m)){
+					if (preg_match("!^\[$IPv6_comp\]$!", $bits['domain'], $m)){
 						list($a, $b) = explode('::', $m[1]);
 						$folded = (strlen($a) && strlen($b)) ? "$a:$b" : "$a$b";
 						$groups = explode(':', $folded);
@@ -298,7 +298,7 @@
 						break;
 					}
 
-					if (preg_match("!^\[$IPv6v4_full\]$!", $bits[domain], $m)){
+					if (preg_match("!^\[$IPv6v4_full\]$!", $bits['domain'], $m)){
 
 						if (intval($m[1]) > 255) return 0;
 						if (intval($m[2]) > 255) return 0;
@@ -307,7 +307,7 @@
 						break;
 					}
 
-					if (preg_match("!^\[$IPv6v4_comp\]$!", $bits[domain], $m)){
+					if (preg_match("!^\[$IPv6v4_comp\]$!", $bits['domain'], $m)){
 						list($a, $b) = explode('::', $m[1]);
 						$b = substr($b, 0, -1); # remove the trailing colon before the IPv4 address
 						$folded = (strlen($a) && strlen($b)) ? "$a:$b" : "$a$b";
@@ -326,7 +326,7 @@
 			# made up of simple labels and we split on dots
 			#
 
-			$labels = explode('.', $bits[domain]);
+			$labels = explode('.', $bits['domain']);
 
 
 			#
