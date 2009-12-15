@@ -101,6 +101,8 @@ h1 {
 <h1>RFC-compliant email address validation</h1>
 
 <?
+	error_reporting(30719 | 2048); # E_ALL | E_STRICT
+
 	include('rfc822.php');
 	include('rfc2822.php');
 	include('rfc3696.php');
@@ -117,23 +119,29 @@ h1 {
 	$parser = xml_parser_create();
 
 	function start($parser, $element_name, $element_attrs){
-		$GLOBALS[last_key] = StrToLower($element_name);
+		$GLOBALS['last_key'] = StrToLower($element_name);
 	}
 
 	function stop($parser, $element_name){
-		$GLOBALS[last_key] = '?';
+		$GLOBALS['last_key'] = '?';
 		if ($element_name == 'TEST'){
-			$GLOBALS[tests][$GLOBALS[test][id]] = $GLOBALS[test];
-			$GLOBALS[test] = array();
+			$GLOBALS['tests'][$GLOBALS['test']['id']] = $GLOBALS['test'];
+			$GLOBALS['test'] = array();
 		}
 	}
 
 	function char($parser, $chr){
 		$chr = str_replace('\\0', "\0", $chr);
-		if ($GLOBALS[last_key] == 'tests') return;
-		if ($GLOBALS[last_key] == 'test') return;
-		if ($GLOBALS[last_key] == '?') return;
-		$GLOBALS[test][$GLOBALS[last_key]] .= $chr;
+		if ($GLOBALS['last_key'] == 'tests') return;
+		if ($GLOBALS['last_key'] == 'test') return;
+		if ($GLOBALS['last_key'] == '?') return;
+
+		if (isset($GLOBALS['test'][$GLOBALS['last_key']])){
+
+			$GLOBALS['test'][$GLOBALS['last_key']] .= $chr;
+		}else{
+			$GLOBALS['test'][$GLOBALS['last_key']] = $chr;
+		}
 	}
 
 	xml_set_element_handler($parser, "start", "stop");
@@ -157,21 +165,26 @@ h1 {
 	# run the tests
 	#
 
-	$totals = array();
+	$totals = array(
+		'all'	=> 0,
+		'822'	=> 0,
+		'2822'	=> 0,
+		'3696'	=> 0,
+	);
 
 	foreach ($tests as $k => $v){
 
-		$tests[$k][expected] = ($v[valid] == 'true') ? 1 : 0;
-		$tests[$k][result_822]  = is_rfc822_valid_email_address( $v[address]) ? 1 : 0;
-		$tests[$k][result_2822] = is_rfc2822_valid_email_address($v[address]) ? 1 : 0;
-		$tests[$k][result_3696] = is_rfc3696_valid_email_address($v[address]) ? 1 : 0;
+		$tests[$k]['expected'] = ($v['valid'] == 'true') ? 1 : 0;
+		$tests[$k]['result_822']  = is_rfc822_valid_email_address( $v['address']) ? 1 : 0;
+		$tests[$k]['result_2822'] = is_rfc2822_valid_email_address($v['address']) ? 1 : 0;
+		$tests[$k]['result_3696'] = is_rfc3696_valid_email_address($v['address']) ? 1 : 0;
 
-		$totals[all]++;
-		$totals[822]  += ($tests[$k][result_822]  == $tests[$k][expected]) ? 1 : 0;
-		$totals[2822] += ($tests[$k][result_2822] == $tests[$k][expected]) ? 1 : 0;
-		$totals[3696] += ($tests[$k][result_3696] == $tests[$k][expected]) ? 1 : 0;
+		$totals['all']++;
+		$totals['822']  += ($tests[$k]['result_822']  == $tests[$k]['expected']) ? 1 : 0;
+		$totals['2822'] += ($tests[$k]['result_2822'] == $tests[$k]['expected']) ? 1 : 0;
+		$totals['3696'] += ($tests[$k]['result_3696'] == $tests[$k]['expected']) ? 1 : 0;
 
-		unset($tests[$k][valid]);
+		unset($tests[$k]['valid']);
 	}
 
 	function is_valid($x){
@@ -206,9 +219,9 @@ h1 {
 <div class="isemail isemail_tooltip">
 	<p class="isemail_address">Percent correct</p>
 	<p class="isemail_result isemail_expected">-</p>
-	<p class="isemail_result isemail_expected"><?=floor(100 * $totals[822] / $totals[all])?>%</p>
-	<p class="isemail_result isemail_expected"><?=floor(100 * $totals[2822] / $totals[all])?>%</p>
-	<p class="isemail_result isemail_expected"><?=floor(100 * $totals[3696] / $totals[all])?>%</p>
+	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['822']  / $totals['all'])?>%</p>
+	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['2822'] / $totals['all'])?>%</p>
+	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['3696'] / $totals['all'])?>%</p>
 
 </div>
 
@@ -217,19 +230,19 @@ h1 {
 
 <div class="isemail isemail_tooltip">
 	<span>
-		Test # <?=$test[id]?><br />
-		<strong><?=show_escapes(HtmlSpecialChars($test[address]))?></strong><br />
-		Expected result: <?=is_valid($test[expected])?><br />
-<? if ($test[comment]){ ?>
-		Comment: <?=HtmlSpecialChars($test[comment])?><br />
+		Test # <?=$test['id']?><br />
+		<strong><?=show_escapes(HtmlSpecialChars($test['address']))?></strong><br />
+		Expected result: <?=is_valid($test['expected'])?><br />
+<? if ($test['comment']){ ?>
+		Comment: <?=HtmlSpecialChars($test['comment'])?><br />
 <? } ?>
-		Source: <?=HtmlSpecialChars($test[source])?>
+		Source: <?=HtmlSpecialChars($test['source'])?>
 	</span>
-	<p class="isemail_address"><nobr><a href="<?=HtmlSpecialChars($test[sourcelink])?>" target="_blank"><?=show_escapes(HtmlSpecialChars($test[address]))?></a></nobr></p>
-	<p class="isemail_result isemail_expected"><?=is_valid($test[expected])?></p>
-	<p class="isemail_result isemail_<?=$test[result_822] ==$test[expected]?'':'un'?>expected"><?=is_valid($test[result_822] )?></p>
-	<p class="isemail_result isemail_<?=$test[result_2822]==$test[expected]?'':'un'?>expected"><?=is_valid($test[result_2822])?></p>
-	<p class="isemail_result isemail_<?=$test[result_3696]==$test[expected]?'':'un'?>expected"><?=is_valid($test[result_3696])?></p>
+	<p class="isemail_address"><nobr><a href="<?=HtmlSpecialChars($test['sourcelink'])?>" target="_blank"><?=show_escapes(HtmlSpecialChars($test['address']))?></a></nobr></p>
+	<p class="isemail_result isemail_expected"><?=is_valid($test['expected'])?></p>
+	<p class="isemail_result isemail_<?=$test['result_822'] ==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_822'] )?></p>
+	<p class="isemail_result isemail_<?=$test['result_2822']==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_2822'])?></p>
+	<p class="isemail_result isemail_<?=$test['result_3696']==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_3696'])?></p>
 </div>
 
 <? } ?>
