@@ -11,9 +11,9 @@
 <h2>Source code</h2>
 
 <ul>
-	<li> <a href="rfc822.phps">RFC 822 Parser</a> </li>
-	<li> <a href="rfc2822.phps">RFC 2822 Parser</a> </li>
-	<li> <a href="rfc3696.phps">RFC 3696 Parser</a> (you probably want this one) </li>
+	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc822.php">RFC 822 Parser</a> </li>
+	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc2822.php">RFC 2822 Parser</a> </li>
+	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc3696.php">RFC 3696 Parser</a> (you probably want this one) </li>
 </ul>
 
 
@@ -65,7 +65,7 @@
 	<dt><a href="http://www.faqs.org/rfcs/rfc5322.html">RFC 5322 - Internet Message Format</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=5322">Errata</a>)</dt>
 	<dd>Superceeds RFC 2822 (this is the latest email RFC)</dd>
 
-	<dt><a href="http://www.faqs.org/rfcs/rfc5952.html">RFC 5952 - A Recommendation for IPv6 Address Text Representation</a> <a href="http://www.rfc-editor.org/errata_search.php?rfc=5952">Errata</a>)</dt>
+	<dt><a href="http://www.faqs.org/rfcs/rfc5952.html">RFC 5952 - A Recommendation for IPv6 Address Text Representation</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=5952">Errata</a>)</dt>
 	<dd>Superceeds RFC 4291 (this is the latest IPv6 RFC)</dd>
 </dl>
 
