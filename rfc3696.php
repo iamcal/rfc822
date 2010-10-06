@@ -193,10 +193,10 @@
 
 
 		#
-		# see http://www.dominicsayers.com/isemail/ for details, but this should probably be 254
+		# this was previously 256 based on RFC3696, but dominic's errata was accepted.
 		#
 
-		if (strlen($email) > 256) return 0;
+		if (strlen($email) > 254) return 0;
 
 
 		#
