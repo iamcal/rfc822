@@ -25,9 +25,9 @@
 
 <h2>Download</h2>
 
-<p>You can download the latest version (release 10) of the functions <a href="rfc822_r10.zip">here</a>. </p>
+<p>You can download the latest version (release 10) of the functions <a href="http://github.com/downloads/iamcal/rfc822/rfc822_r10.zip">here</a>. </p>
 
-<p>The very latest versions are available from the <a href="https://svn.iamcal.com/public/php/rfc822/trunk/">SVN repository</a>. </p>
+<p>The very latest versions are available from the <a href="http://github.com/iamcal/rfc822">GitHub repository</a>. </p>
 
 
 <h2>The RFCs</h2>
