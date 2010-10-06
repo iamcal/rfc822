@@ -19,7 +19,8 @@
 
 <h2>Tests</h2>
 
-<p>The <a href="tests.php">test suite</a> shows results for each parser, based on these <a href="tests.xml">test definitions</a>. These are borrowed from <a href="http://www.dominicsayers.com/isemail/">Dominic Sayers</a> who has a similar parser. We are still arguing over certain tests ;)</p>
+<p>The <a href="tests/index.php">test suite</a> shows results for each parser, based on these <a href="tests/tests.xml">test definitions</a>. These are borrowed from
+<a href="http://www.dominicsayers.com/isemail/">Dominic Sayers</a> who has a similar parser. We are still arguing over certain tests ;)</p>
 
 
 <h2>Download</h2>
@@ -64,6 +65,8 @@
 	<dt><a href="http://www.faqs.org/rfcs/rfc5322.html">RFC 5322 - Internet Message Format</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=5322">Errata</a>)</dt>
 	<dd>Superceeds RFC 2822 (this is the latest email RFC)</dd>
 
+	<dt><a href="http://www.faqs.org/rfcs/rfc5952.html">RFC 5952 - A Recommendation for IPv6 Address Text Representation</a> <a href="http://www.rfc-editor.org/errata_search.php?rfc=5952">Errata</a>)</dt>
+	<dd>Superceeds RFC 4291 (this is the latest IPv6 RFC)</dd>
 </dl>
 
 <p>Reading the errata is pretty important, since some of the examples and even the EBNF are wrong in the original RFCs.</p>
