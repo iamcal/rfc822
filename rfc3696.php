@@ -279,12 +279,12 @@
 
 			$IPv6_full		= "IPv6\:$IPv6_hex(:?\:$IPv6_hex){7}";
 
-			$IPv6_comp_part		= "(?:$IPv6_hex(?:\:$IPv6_hex){0,5})?";
+			$IPv6_comp_part		= "(?:$IPv6_hex(?:\:$IPv6_hex){0,7})?";
 			$IPv6_comp		= "IPv6\:($IPv6_comp_part\:\:$IPv6_comp_part)";
 
 			$IPv6v4_full		= "IPv6\:$IPv6_hex(?:\:$IPv6_hex){5}\:$IPv4_address_literal";
 
-			$IPv6v4_comp_part	= "$IPv6_hex(?:\:$IPv6_hex){0,3}";
+			$IPv6v4_comp_part	= "$IPv6_hex(?:\:$IPv6_hex){0,5}";
 			$IPv6v4_comp		= "IPv6\:((?:$IPv6v4_comp_part)?\:\:(?:$IPv6v4_comp_part\:)?)$IPv4_address_literal";
 
 
