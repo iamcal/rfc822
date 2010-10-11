@@ -98,7 +98,18 @@ ones:</p>
 
 <p>Tim Fletcher has translated the function to ruby and python: <a href="http://tfletcher.com/lib/">http://tfletcher.com/lib/</a>. </p>
 
-<p>A full rolled-up version of the RFC 2882 regexp can be seen <a href="full_regexp.txt">here</a>. </p>
+<p>
+	A fullly unpacked version of the underlying regular expression can be seen <a href="full_regexp.txt">here</a>. It's huge.
+</p>
+
+<p>
+	It's been said that it's impossible to parse email addresses using regular expressions alone. This is somewhat true.
+	If you allow comments in email addresses, then nested comments cannot be matched with a single regexp - a simple loop applying a reducing regexp first is needed.
+	Aside from that, this library uses some post-match checks instead of rolling everything into one regexp.
+	This is not because it wouldn't be possible, but because it would make it <i>huge</i> - the number of IPv6 permutations alone would probably double the size.
+	Aside from the practicality, it seems entirely possible to boil it down to a single regexp.
+	However, the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state">one used for HTML5</a> is not even close :(
+</p>
 
 
 <?
