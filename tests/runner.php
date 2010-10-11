@@ -64,6 +64,7 @@
 		'822'	=> 0,
 		'2822'	=> 0,
 		'3696'	=> 0,
+		'strict' => 0,
 	);
 
 	foreach ($tests as $k => $v){
@@ -72,11 +73,13 @@
 		$tests[$k]['result_822']  = is_rfc822_valid_email_address( $v['address']) ? 1 : 0;
 		$tests[$k]['result_2822'] = is_rfc2822_valid_email_address($v['address']) ? 1 : 0;
 		$tests[$k]['result_3696'] = is_rfc3696_valid_email_address($v['address']) ? 1 : 0;
+		$tests[$k]['result_strict'] = is_rfc3696_valid_email_address($v['address'], array('public_internet' => false)) ? 1 : 0;
 
 		$totals['all']++;
-		$totals['822']  += ($tests[$k]['result_822']  == $tests[$k]['expected']) ? 1 : 0;
-		$totals['2822'] += ($tests[$k]['result_2822'] == $tests[$k]['expected']) ? 1 : 0;
-		$totals['3696'] += ($tests[$k]['result_3696'] == $tests[$k]['expected']) ? 1 : 0;
+		$totals['822']    += ($tests[$k]['result_822']  == $tests[$k]['expected']) ? 1 : 0;
+		$totals['2822']   += ($tests[$k]['result_2822'] == $tests[$k]['expected']) ? 1 : 0;
+		$totals['3696']   += ($tests[$k]['result_3696'] == $tests[$k]['expected']) ? 1 : 0;
+		$totals['strict'] += ($tests[$k]['result_strict'] == $tests[$k]['expected']) ? 1 : 0;
 
 		unset($tests[$k]['valid']);
 	}
