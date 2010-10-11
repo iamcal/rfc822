@@ -23,7 +23,7 @@
 
 		$defaults = array(
 			'allow_comments'	=> true,
-			'public_internet'	=> true,
+			'public_internet'	=> true, # turn this off for 'strict' mode
 		);
 
 		$opts = array();
@@ -355,7 +355,9 @@
 			# public internet, so we'll fail it (e.g. user@localhost)
 			#
 
-			if (count($labels) == 1) return 0;
+			if ($options['public_internet']){
+				if (count($labels) == 1) return 0;
+			}
 
 
 			#
@@ -374,7 +376,9 @@
 			# last label can't be all numeric
 			#
 
-			if (preg_match('!^[0-9]+$!', array_pop($labels))) return 0;
+			if ($options['public_internet']){
+				if (preg_match('!^[0-9]+$!', array_pop($labels))) return 0;
+			}
 		}
 
 
