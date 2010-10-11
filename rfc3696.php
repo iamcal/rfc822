@@ -1,7 +1,7 @@
 <?php
 
 	#
-	# RFC3696 Email Parser
+	# RFC 822/2822/5322 Email Parser
 	#
 	# By Cal Henderson <cal@iamcal.com>
 	#
@@ -14,7 +14,7 @@
 
 	##################################################################################
 
-	function is_rfc3696_valid_email_address($email, $options=array()){
+	function is_valid_email_address($email, $options=array()){
 
 		#
 		# you can pass a few different named options as a second argument,
@@ -220,7 +220,7 @@
 
 		if ($options['allow_comments']){
 
-			$email = rfc3696_strip_comments($outer_comment, $email, "(x)");
+			$email = email_strip_comments($outer_comment, $email, "(x)");
 		}
 
 
@@ -247,12 +247,14 @@
 
 		#
 		# we need to now strip comments from $bits[local] and $bits[domain],
-		# since we know they're i the right place and we want them out of the
+		# since we know they're in the right place and we want them out of the
 		# way for checking IPs, label sizes, etc
 		#
 
-		$bits['local']	= rfc3696_strip_comments($comment, $bits['local']);
-		$bits['domain']	= rfc3696_strip_comments($comment, $bits['domain']);
+		if ($options['allow_comments']){
+			$bits['local']	= email_strip_comments($comment, $bits['local']);
+			$bits['domain']	= email_strip_comments($comment, $bits['domain']);
+		}
 
 
 		#
@@ -387,7 +389,7 @@
 
 	##################################################################################
 
-	function rfc3696_strip_comments($comment, $email, $replace=''){
+	function email_strip_comments($comment, $email, $replace=''){
 
 		while (1){
 			$new = preg_replace("!$comment!", $replace, $email);

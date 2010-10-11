@@ -112,40 +112,32 @@ h1 {
 
 <p>
 	This test suite comes from <a href="http://www.dominicsayers.com/isemail/">Dominic Sayers</a> and is a mix of RFC examples and examples from other validators.
-	Some of these addresses are <i>not</i> RFC822 or RFC2822 compliant, so failures are expected.
-	The RFC3696 validator attempts to validate email addresses on the public internet, so is probably what you care about.
 </p>
 <p>
 	The test suite is currently allowing addresses that are unroutable on the public Internet, such as <code>first.last@example.123</code>.
-	This behavior is disabled by default, but can be switched on; the tests are run in both mode for comparison.
+	This behavior is disabled by default, but can be switched on; the tests are run in both modes for comparison.
 </p>
 
 <div class="isemail isemail_tooltip">
 	<p class="isemail_address"><br />&nbsp;</p>
 
 	<p class="isemail_result isemail_header">Expected</p>
-	<p class="isemail_result isemail_header">RFC 3696<br />(Strict Mode)</p>
-	<p class="isemail_result isemail_header">RFC 3696<br />(Public Mode)</p>
-	<p class="isemail_result isemail_header">RFC 2822</p>
-	<p class="isemail_result isemail_header">RFC 822</p>
+	<p class="isemail_result isemail_header">Strict Mode</p>
+	<p class="isemail_result isemail_header">Public Mode</p>
 </div>
 
 <div class="isemail isemail_tooltip">
 	<p class="isemail_address">Percent correct</p>
 	<p class="isemail_result isemail_expected">-</p>
 	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['strict'] / $totals['all'])?>%</p>
-	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['3696']   / $totals['all'])?>%</p>
-	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['2822']   / $totals['all'])?>%</p>
-	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['822']    / $totals['all'])?>%</p>
+	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['public'] / $totals['all'])?>%</p>
 </div>
 
 <div class="isemail isemail_tooltip">
 	<p class="isemail_address">Number correct</p>
 	<p class="isemail_result isemail_expected">-</p>
 	<p class="isemail_result isemail_expected"><?=$totals['strict']?> / <?=$totals['all']?></p>
-	<p class="isemail_result isemail_expected"><?=$totals['3696']?> / <?=$totals['all']?></p>
-	<p class="isemail_result isemail_expected"><?=$totals['2822']?> / <?=$totals['all']?></p>
-	<p class="isemail_result isemail_expected"><?=$totals['822']?> / <?=$totals['all']?></p>
+	<p class="isemail_result isemail_expected"><?=$totals['public']?> / <?=$totals['all']?></p>
 </div>
 
 
@@ -165,9 +157,7 @@ h1 {
 	<p class="isemail_result isemail_expected"><?=is_valid($test['expected'])?></p>
 
 	<p class="isemail_result isemail_<?=$test['result_strict']==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_strict'])?></p>
-	<p class="isemail_result isemail_<?=$test['result_3696']==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_3696'])?></p>
-	<p class="isemail_result isemail_<?=$test['result_2822']==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_2822'])?></p>
-	<p class="isemail_result isemail_<?=$test['result_822'] ==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_822'] )?></p>
+	<p class="isemail_result isemail_<?=$test['result_public']==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_public'])?></p>
 </div>
 
 <? } ?>

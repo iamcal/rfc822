@@ -1,19 +1,15 @@
 <?
-	$title = "RFC (2)822 &amp; 3696 Email Address Parser in PHP";
+	$title = "RFC 822 Email Address Parser in PHP";
 	include('../../head.txt');
 ?>
 
-<h1>RFC (2)822 &amp; 3696 Email Address Parser in PHP</h1>
-
-<p><span style="background-color: yellow"><b>Warning!</b> Releases 4 and older contained a bug in the RFC2882 <code>atext</code> rule, which allowed periods in the wrong places. Upgrade to release 5 or later to fix this issue.</span></p>
+<h1>RFC 822  Email Address Parser in PHP</h1>
 
 
 <h2>Source code</h2>
 
 <ul>
-	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc822.php">RFC 822 Parser</a> </li>
-	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc2822.php">RFC 2822 Parser</a> </li>
-	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc3696.php">RFC 3696 Parser</a> (you probably want this one) </li>
+	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc3696.php">Email Address Parser</a> </li>
 </ul>
 
 
@@ -32,7 +28,8 @@
 
 <h2>The RFCs</h2>
 
-<p>Email address formats are covered by several RFCs:</p>
+<p>This library was named back when there was only one RFC for email addresses; there are now lots, so it would be better named RFC 822/2822/5322 at the least. These are the most relevant 
+ones:</p>
 
 <dl>
 	<dt><a href="http://www.faqs.org/rfcs/rfc821.html">RFC 821 - Simple Mail Transfer Protocol</a> (<a href="http://www.rfc-editor.org/errata_search.php?rfc=821">Errata</a>)</dt>
@@ -87,7 +84,14 @@
 
 <h2>Limitations</h2>
 
-<p>The code only verifies that the email address matches the RFC spec. <b>This does not mean it's a valid Internet email address!</b> For an email address to be valid on the Internet, the domain part must be a valid domain name, be resolvable and have an MX. The code will identify the address "<code>foo@bar.baz</code>" as valid, even though we konw that there's no such domain as <code>bar.baz</code>. If you want to check that it's valid, fetching the MX for the domain is a good start. Connecting to the MX to verify it's a mail server is even better.</p>
+<p>
+	The code only verifies that the email address matches the various RFC specs.
+	<b>This does not mean it's a valid Internet email address!</b>
+	For an email address to be valid on the Internet, the domain part must be a valid domain name, be resolvable and have an MX.
+	The code will identify the address "<code>foo@bar.baz</code>" as valid, even though we konw that there's no such domain as <code>bar.baz</code>.
+	If you want to check that it's valid, fetching the MX for the domain is a good start.
+	Connecting to the MX to verify it's a mail server is even better.
+</p>
 
 
 <h2>Extras</h2>
