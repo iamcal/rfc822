@@ -19,7 +19,7 @@
 
 <h2>Tests</h2>
 
-<p>The <a href="tests/index.php">test suite</a> shows results for each parser, based on these <a href="tests/tests.xml">test definitions</a>. These are borrowed from
+<p>The <a href="tests/">test suite</a> shows results for each parser, based on these <a href="tests/tests.xml">test definitions</a>. These are borrowed from
 <a href="http://www.dominicsayers.com/isemail/">Dominic Sayers</a> who has a similar parser. We are still arguing over certain tests ;)</p>
 
 
