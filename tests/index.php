@@ -120,25 +120,25 @@ h1 {
 	<p class="isemail_address"><br />&nbsp;</p>
 
 	<p class="isemail_result isemail_header">Expected</p>
-	<p class="isemail_result isemail_header">RFC 822</p>
-	<p class="isemail_result isemail_header">RFC 2822</p>
 	<p class="isemail_result isemail_header">RFC 3696</p>
+	<p class="isemail_result isemail_header">RFC 2822</p>
+	<p class="isemail_result isemail_header">RFC 822</p>
 </div>
 
 <div class="isemail isemail_tooltip">
 	<p class="isemail_address">Percent correct</p>
 	<p class="isemail_result isemail_expected">-</p>
-	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['822']  / $totals['all'])?>%</p>
-	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['2822'] / $totals['all'])?>%</p>
 	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['3696'] / $totals['all'])?>%</p>
+	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['2822'] / $totals['all'])?>%</p>
+	<p class="isemail_result isemail_expected"><?=floor(100 * $totals['822']  / $totals['all'])?>%</p>
 </div>
 
 <div class="isemail isemail_tooltip">
 	<p class="isemail_address">Number correct</p>
 	<p class="isemail_result isemail_expected">-</p>
-	<p class="isemail_result isemail_expected"><?=$totals['822']?> / <?=$totals['all']?></p>
-	<p class="isemail_result isemail_expected"><?=$totals['2822']?> / <?=$totals['all']?></p>
 	<p class="isemail_result isemail_expected"><?=$totals['3696']?> / <?=$totals['all']?></p>
+	<p class="isemail_result isemail_expected"><?=$totals['2822']?> / <?=$totals['all']?></p>
+	<p class="isemail_result isemail_expected"><?=$totals['822']?> / <?=$totals['all']?></p>
 </div>
 
 
@@ -156,9 +156,10 @@ h1 {
 	</span>
 	<p class="isemail_address"><nobr><a href="<?=HtmlSpecialChars($test['sourcelink'])?>" target="_blank"><?=show_escapes(HtmlSpecialChars($test['address']))?></a></nobr></p>
 	<p class="isemail_result isemail_expected"><?=is_valid($test['expected'])?></p>
-	<p class="isemail_result isemail_<?=$test['result_822'] ==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_822'] )?></p>
-	<p class="isemail_result isemail_<?=$test['result_2822']==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_2822'])?></p>
+
 	<p class="isemail_result isemail_<?=$test['result_3696']==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_3696'])?></p>
+	<p class="isemail_result isemail_<?=$test['result_2822']==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_2822'])?></p>
+	<p class="isemail_result isemail_<?=$test['result_822'] ==$test['expected']?'':'un'?>expected"><?=is_valid($test['result_822'] )?></p>
 </div>
 
 <? } ?>
