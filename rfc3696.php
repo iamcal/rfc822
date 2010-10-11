@@ -14,7 +14,22 @@
 
 	##################################################################################
 
-	function is_rfc3696_valid_email_address($email){
+	function is_rfc3696_valid_email_address($email, $options=array()){
+
+		#
+		# you can pass a few different named options as a second argument,
+		# but the defaults are usually a good choice.
+		#
+
+		$defaults = array(
+			'allow_comments'	=> true,
+			'public_internet'	=> true,
+		);
+
+		$opts = array();
+		foreach ($defaults as $k => $v) $opts[$k] = isset($options[$k]) ? $options[$k] : $v;
+		$options = $opts;
+		
 
 
 		####################################################################################
@@ -203,7 +218,10 @@
 		# we need to strip nested comments first - we replace them with a simple comment
 		#
 
-		$email = rfc3696_strip_comments($outer_comment, $email, "(x)");
+		if ($options['allow_comments']){
+
+			$email = rfc3696_strip_comments($outer_comment, $email, "(x)");
+		}
 
 
 		#
@@ -246,7 +264,10 @@
 
 
 		#
-		# restrictuions on domain-literals from RFC2821 section 4.1.3
+		# restrictions on domain-literals from RFC2821 section 4.1.3
+		#
+		# RFC4291 changed the meaning of :: in IPv6 addresses - i can mean one or
+		# more zero groups (updated from 2 or more).
 		#
 
 		if (strlen($bits['domain-literal'])){
@@ -294,7 +315,7 @@
 						list($a, $b) = explode('::', $m[1]);
 						$folded = (strlen($a) && strlen($b)) ? "$a:$b" : "$a$b";
 						$groups = explode(':', $folded);
-						if (count($groups) > 6) return 0;
+						if (count($groups) > 7) return 0;
 						break;
 					}
 
@@ -312,7 +333,7 @@
 						$b = substr($b, 0, -1); # remove the trailing colon before the IPv4 address
 						$folded = (strlen($a) && strlen($b)) ? "$a:$b" : "$a$b";
 						$groups = explode(':', $folded);
-						if (count($groups) > 4) return 0;
+						if (count($groups) > 5) return 0;
 						break;
 					}
 
