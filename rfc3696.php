@@ -277,7 +277,7 @@
 
 			$IPv6_hex		= "(?:[0-9a-fA-F]{1,4})";
 
-			$IPv6_full		= "IPv6\:$IPv6_hex(:?\:$IPv6_hex){7}";
+			$IPv6_full		= "IPv6\:$IPv6_hex(?:\:$IPv6_hex){7}";
 
 			$IPv6_comp_part		= "(?:$IPv6_hex(?:\:$IPv6_hex){0,7})?";
 			$IPv6_comp		= "IPv6\:($IPv6_comp_part\:\:$IPv6_comp_part)";
