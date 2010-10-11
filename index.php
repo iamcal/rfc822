@@ -21,7 +21,7 @@
 
 <h2>Download</h2>
 
-<p>You can download the latest version (release 10) of the functions <a href="http://github.com/downloads/iamcal/rfc822/rfc822_r10.zip">here</a>. </p>
+<p>You can download the latest stable version (release 11) of the functions <a href="http://github.com/downloads/iamcal/rfc822/rfc822_r11.zip">here</a>. </p>
 
 <p>The very latest versions are available from the <a href="http://github.com/iamcal/rfc822">GitHub repository</a>. </p>
 
