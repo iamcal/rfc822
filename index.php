@@ -9,7 +9,7 @@
 <h2>Source code</h2>
 
 <ul>
-	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc3696.php">Email Address Parser</a> </li>
+	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc822.php">Email Address Parser</a> </li>
 </ul>
 
 
