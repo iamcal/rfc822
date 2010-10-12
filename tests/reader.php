@@ -9,12 +9,18 @@
 
 	$test = array();
 	$tests = array();
+	$glossary = array();
 	$last_key = '?';
+	$last_glossary_id = '?';
 	
 	$parser = xml_parser_create();
 
 	function start($parser, $element_name, $element_attrs){
 		$GLOBALS['last_key'] = StrToLower($element_name);
+
+		if ($element_name == 'GLOSSARY'){
+			$GLOBALS['last_glossary_id'] = $element_attrs['ID'];
+		}
 	}
 
 	function stop($parser, $element_name){
@@ -27,12 +33,17 @@
 			$GLOBALS['test']['tags'][] = $GLOBALS['test']['tag'];
 			unset($GLOBALS['test']['tag']);
 		}
+		if ($element_name == 'GLOSSARY'){
+			$GLOBALS['glossary'][$GLOBALS['last_glossary_id']] = $GLOBALS['test'];
+			$GLOBALS['test'] = array();
+		}
 	}
 
 	function char($parser, $chr){
 		$chr = str_replace('\\0', "\0", $chr);
 		if ($GLOBALS['last_key'] == 'tests') return;
 		if ($GLOBALS['last_key'] == 'test') return;
+		if ($GLOBALS['last_key'] == 'glossary') return;
 		if ($GLOBALS['last_key'] == '?') return;
 
 		if (isset($GLOBALS['test'][$GLOBALS['last_key']])){
