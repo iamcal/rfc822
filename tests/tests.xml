@@ -66,6 +66,7 @@ Version	Date		Notes
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>2</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<address>first.last@sub.do,com</address>
@@ -116,6 +117,7 @@ Version	Date		Notes
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>8</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<address>1234567890123456789012345678901234567890123456789012345678@12345678901234567890123456789012345678901234567890123456789.12345678901234567890123456789012345678901234567890123456789.123456789012345678901234567890123456789012345678901234567890123.iana.org</address>
@@ -125,6 +127,7 @@ Version	Date		Notes
 		<source>RFC 3696 erratum 1690</source>
 		<sourcelink>http://www.rfc-editor.org/errata_search.php?rfc=3696&amp;eid=1690</sourcelink>
 		<id>9</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<address>first.last@[12.34.56.78]</address>
@@ -197,6 +200,7 @@ Version	Date		Notes
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>18</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<address>first.last@3com.com</address>
@@ -222,6 +226,7 @@ Version	Date		Notes
 		<source>RFC 3696 erratum 1690</source>
 		<sourcelink>http://www.rfc-editor.org/errata_search.php?rfc=3696&amp;eid=1690</sourcelink>
 		<id>21</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<address>first.last</address>
@@ -240,6 +245,7 @@ Version	Date		Notes
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>23</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<address>.first.last@iana.org</address>
@@ -339,6 +345,7 @@ Version	Date		Notes
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>34</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<address>first.last@[.12.34.56.78]</address>
@@ -501,6 +508,8 @@ Version	Date		Notes
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>52</id>
+		<tag>length</tag>
+		<tag>length2</tag>
 	</test>
 	<test>
 		<address>"Abc\@def"@iana.org</address>
@@ -1033,6 +1042,7 @@ Version	Date		Notes
 		<source>Dave Child</source>
 		<sourcelink>http://code.google.com/p/php-email-address-validation/</sourcelink>
 		<id>115</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<valid>true</valid>
@@ -1542,6 +1552,7 @@ Version	Date		Notes
 		<source>Dominic Sayers</source>
 		<sourcelink>http://www.dominicsayers.com/isemail</sourcelink>
 		<id>173</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<address>first(Welcome to&#13;&#10; the ("wonderful" (!)) world&#13;&#10; of email)@iana.org</address>
@@ -1650,6 +1661,7 @@ Version	Date		Notes
 		<source>Cal Henderson</source>
 		<sourcelink>http://code.iamcal.com/php/rfc822/</sourcelink>
 		<id>185</id>
+		<tag>length</tag>
 	</test>
 	<test>
 		<address>a(a(b(c)d(e(f))g)h(i)j)@iana.org</address>
@@ -2477,4 +2489,15 @@ Version	Date		Notes
 		<sourcelink>http://squiloople.com/tag/email/</sourcelink>
 		<id>280</id>
 	</test>
+	<glossary id="length">
+		<title>Length Tests</title>
+		<desc>
+There are several length limits that are imposed.
+The entire address cannot be longer than 254 characters, as explained by errata 45633245864
+		</desc>
+	</glossary>
+	<glossary id="length2">
+		<title>Fake Test</title>
+		<desc>This is a test</desc>
+	</glossary>
 </tests>
