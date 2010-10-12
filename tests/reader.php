@@ -23,6 +23,10 @@
 			$GLOBALS['tests'][$GLOBALS['test']['id']] = $GLOBALS['test'];
 			$GLOBALS['test'] = array();
 		}
+		if ($element_name == 'TAG'){
+			$GLOBALS['test']['tags'][] = $GLOBALS['test']['tag'];
+			unset($GLOBALS['test']['tag']);
+		}
 	}
 
 	function char($parser, $chr){
