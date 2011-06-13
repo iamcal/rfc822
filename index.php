@@ -9,21 +9,22 @@
 <h2>Source code</h2>
 
 <ul>
-	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc822.php">Email Address Parser</a> </li>
+	<li> <a href="http://github.com/iamcal/rfc822/blob/master/rfc822.php">rfc822.php</a> - Email Address Parser </li>
 </ul>
+
+<h2>Download</h2>
+
+<p>There is an <a href="/php/rfc822/demo.php">online interactive demo</a> if you'd just like to give it a try.</p>
+
+<p>You can download the latest stable version (release 11) of the functions <a href="http://github.com/downloads/iamcal/rfc822/rfc822_r11.zip">here</a>. </p>
+
+<p>The very latest versions are available from the <a href="http://github.com/iamcal/rfc822">GitHub repository</a>. </p>
 
 
 <h2>Tests</h2>
 
 <p>The <a href="tests/">test suite</a> shows parser's results, based on these <a href="tests/tests.xml">test definitions</a>. These are borrowed from
 <a href="http://www.dominicsayers.com/isemail/">Dominic Sayers</a> who has a similar parser. We are still arguing over certain tests ;)</p>
-
-
-<h2>Download</h2>
-
-<p>You can download the latest stable version (release 11) of the functions <a href="http://github.com/downloads/iamcal/rfc822/rfc822_r11.zip">here</a>. </p>
-
-<p>The very latest versions are available from the <a href="http://github.com/iamcal/rfc822">GitHub repository</a>. </p>
 
 
 <h2>The RFCs</h2>
